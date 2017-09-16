@@ -7,8 +7,6 @@
 const shell = require('shelljs');
 process.env.NODE_ENV = 'production';
 
-const path = require('path');
-const config = require('../client/webpack');
 const ora = require('ora');
 const webpack = require('webpack');
 const webpackConfig = require('../client/webpack.conf');
@@ -21,11 +19,6 @@ console.log(
 
 const spinner = ora('building for production...');
 spinner.start();
-
-const assetsPath = path.join(config.assetsRoot, config.assetsSubDirectory);
-shell.rm('-rf', assetsPath);
-shell.mkdir('-p', assetsPath);
-shell.cp('-R', 'client/static/', assetsPath);
 
 webpack(webpackConfig, function (err, stats) {
   spinner.stop();
