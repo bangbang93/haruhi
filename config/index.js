@@ -17,7 +17,8 @@ const env = process.env.NODE_ENV || 'development';
 
 index.forEach((config)=>{
   if (fs.existsSync(path.join(__dirname, env, `${config}.json`))
-    || fs.existsSync(path.join(__dirname, env,`${config}.js`)) ){
+    || fs.existsSync(path.join(__dirname, env,`${config}.js`))
+    || fs.existsSync(path.join(__dirname, env,`${config}.ts`))) {
     exports[config] = require(`./${env}/${config}`);
   }
 });
