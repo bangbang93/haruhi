@@ -22,7 +22,8 @@ const RedisStore = require('connect-redis')(session);
 app.use(cookieParser());
 app.use(session(Object.assign({
     store: new RedisStore({
-      prefix: 'im:session:'
+      prefix: 'haruhi:session:',
+      ...require('./config').database.redis
     })
   }, require('./config').session)
 ));
