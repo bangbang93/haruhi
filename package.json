@@ -24,7 +24,7 @@
     "express": "^4.15.4",
     "express-promise-router": "^2.0.0",
     "express-session": "^1.15.3",
-    "express-simple-route": "^1.5.1",
+    "express-simple-route": "^1.6.1",
     "ioredis": "^3.1.4",
     "loud-rejection": "^1.6.0",
     "moment": "^2.18.1",
