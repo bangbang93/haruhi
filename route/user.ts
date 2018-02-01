@@ -1,5 +1,6 @@
 'use strict';
-const router = require('express-promise-router')();
+import Router from 'express-promise-router'
+const router = Router();
 
 router.get('/', async function(req, res) {
   await new Promise(function (resolve, reject) {
@@ -10,7 +11,7 @@ router.get('/', async function(req, res) {
 
 router.get('/error', async function (req, res) {
   let err = new Error('some thing happened');
-  err.req = req.url;
+  err['req'] = req.url;
   throw err;
 });
 
