@@ -31,7 +31,8 @@ module.exports = Object.assign(config, {
     modules: [
       path.join(__dirname, 'src'),
       path.join(__dirname, '../node_modules'),
-    ]
+    ],
+    extensions: ['.js', '.vue', '.json', '.ts']
   },
   module: {
     rules: [
