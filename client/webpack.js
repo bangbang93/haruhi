@@ -20,7 +20,7 @@ let config = (function(){
 })();
 module.exports = Object.assign(config, {
   entry: {
-    index: path.resolve(__dirname, '../client/src/entries/index.js'),
+    index: path.resolve(__dirname, '../client/src/entries/index.ts'),
   },
   output: {
     path: path.resolve(__dirname, '../public'),
@@ -50,6 +50,17 @@ module.exports = Object.assign(config, {
         loader: 'babel-loader',
         include: projectRoot,
         exclude: /node_modules/
+      },
+      {
+        test: /\.ts$/,
+        exclude: /node_modules/,
+        use:[{
+          loader: 'ts-loader',
+          options: {
+            transpileOnly: true,
+            appendTsSuffixTo: [/\.vue$/],
+          }
+        }]
       },
       {
         test: /\.css$/,

@@ -1,6 +1,6 @@
 'use strict';
-import Router from 'express-promise-router'
-const router = Router();
+
+const router = require('express-promise-router')();
 
 router.get('/', async function(req, res) {
   await new Promise(function (resolve, reject) {
