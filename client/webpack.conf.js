@@ -13,27 +13,24 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const IS_PRODUCTION = process.env.NODE_ENV === 'production'
 
 
-let plugins;
+let plugins = [
+  new webpack.DefinePlugin({
+    'process.env': {
+      NODE_ENV: `'${process.env.NODE_ENV}'`
+    }
+  }),
+];
 if (IS_PRODUCTION) {
   console.log('production webpack')
   plugins     = [
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: `'${process.env.NODE_ENV}'`
-      }
-    }),
-    new webpack.optimize.UglifyJsPlugin({
-      mangle: {
-        except   : ['$super', '$', 'exports', 'require'],
-        sourceMap: true,
-      }
+    new webpack.LoaderOptionsPlugin({
+      minimize: true,
     }),
     new CleanPlugin(config.output.path, {
       root   : require('path').resolve('..'),
       exclude: ['.gitkeep']
     }),
-    new webpack.optimize.CommonsChunkPlugin('vendor.js'),
-    new ExtractTextPlugin('style.css'),
+    // new ExtractTextPlugin('style.css'),
   ]
   let entries = Object.keys(config.entry)
   entries.forEach((entry) => {
@@ -51,11 +48,6 @@ if (IS_PRODUCTION) {
     config.entry[name] = ['./client/dev-client'].concat(config.entry[name])
   })
   plugins     = [
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: `'${process.env.NODE_ENV}'`
-      }
-    }),
     new webpack.HotModuleReplacementPlugin(),
   ]
   let entries = Object.keys(config.entry)
