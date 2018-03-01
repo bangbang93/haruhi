@@ -19,11 +19,12 @@ let config = (function(){
   return config[IS_PRODUCTION? 'build' : 'dev']
 })();
 module.exports = Object.assign(config, {
+  mode: IS_PRODUCTION ? 'production': 'development',
   entry: {
     index: path.resolve(__dirname, '../client/src/entries/index.ts'),
   },
   output: {
-    path: path.resolve(__dirname, '../public'),
+    path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
     filename: '[name].[hash].js'
   },
