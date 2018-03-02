@@ -66,7 +66,7 @@
     "ts-loader": "^4.0.0",
     "url-loader": "^0.6.2",
     "vue": "^2.5.13",
-    "vue-fetch": "^0.9.3",
+    "vue-fetch": "^1.0.1",
     "vue-html-loader": "^1.2.3",
     "vue-loader": "^14.1.1",
     "vue-router": "^3.0.1",
