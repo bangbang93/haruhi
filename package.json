@@ -64,7 +64,7 @@
     "ora": "^2.0.0",
     "shelljs": "^0.8.1",
     "ts-loader": "^4.0.0",
-    "url-loader": "^0.6.2",
+    "url-loader": "^1.0.0",
     "vue": "^2.5.13",
     "vue-fetch": "^1.0.1",
     "vue-html-loader": "^1.2.3",
