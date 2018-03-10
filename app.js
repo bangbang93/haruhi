@@ -8,7 +8,7 @@ const bodyParser = require('body-parser');
 const history = require('connect-history-api-fallback');
 
 const app = express();
-app.set('trust proxy', 'loopback');
+app.set('trust proxy', ['loopback', 'uniquelocal']);
 
 if (app.get('env') === 'development'){
   app.use(logger('dev'));
