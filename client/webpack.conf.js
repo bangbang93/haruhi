@@ -8,12 +8,14 @@ const webpack = require('webpack');
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanPlugin = require('clean-webpack-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const {VueLoaderPlugin} = require('vue-loader')
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const IS_PRODUCTION = process.env.NODE_ENV === 'production'
 
 
 let plugins = [
+  new VueLoaderPlugin(),
   new webpack.DefinePlugin({
     'process.env': {
       NODE_ENV: `'${process.env.NODE_ENV}'`
@@ -22,7 +24,8 @@ let plugins = [
 ];
 if (IS_PRODUCTION) {
   console.log('production webpack')
-  plugins     = [
+  plugins = [
+    ...plugins,
     new webpack.LoaderOptionsPlugin({
       minimize: true,
     }),
@@ -30,7 +33,10 @@ if (IS_PRODUCTION) {
       root   : require('path').resolve('..'),
       exclude: ['.gitkeep']
     }),
-    // new ExtractTextPlugin('style.css'),
+    new MiniCssExtractPlugin({
+      filename: '[name].[hash].css',
+      chunkFilename: '[id].css',
+    })
   ]
   let entries = Object.keys(config.entry)
   entries.forEach((entry) => {
@@ -48,6 +54,7 @@ if (IS_PRODUCTION) {
     config.entry[name] = ['./client/dev-client'].concat(config.entry[name])
   })
   plugins     = [
+    ...plugins,
     new webpack.HotModuleReplacementPlugin(),
   ]
   let entries = Object.keys(config.entry)

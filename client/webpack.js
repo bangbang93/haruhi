@@ -4,6 +4,7 @@
 'use strict';
 const path = require('path');
 const projectRoot = path.resolve(__dirname, './src');
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 const IS_PRODUCTION = process.env.NODE_ENV === 'production'
 
@@ -39,13 +40,7 @@ module.exports = Object.assign(config, {
     rules: [
       {
         test: /\.vue$/,
-        loader: 'vue-loader',
-        options: {
-          loaders: {
-            scss: 'vue-style-loader!css-loader!sass-loader'
-          },
-          extractCss: IS_PRODUCTION
-        }
+        loader: 'vue-loader'
       },
       {
         test: /\.js$/,
@@ -67,7 +62,15 @@ module.exports = Object.assign(config, {
       },
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader'
+        use: IS_PRODUCTION ?
+          [MiniCssExtractPlugin.loader, 'css-loader'] :
+          ['vue-style-loader', 'css-loader'],
+      },
+      {
+        test: /\.s[ca]ss$/,
+        use: IS_PRODUCTION ?
+          [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'] :
+          ['vue-style-loader', 'css-loader', 'sass-loader']
       },
       {
         test: /\.html$/,
