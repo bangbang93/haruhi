@@ -68,7 +68,7 @@
     "vue": "^2.5.13",
     "vue-fetch": "^1.0.2",
     "vue-html-loader": "^1.2.3",
-    "vue-loader": "^14.1.1",
+    "vue-loader": "^15.2.0",
     "vue-router": "^3.0.1",
     "vue-style-loader": "^4.0.2",
     "vue-template-compiler": "^2.5.13",
