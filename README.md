@@ -27,7 +27,7 @@ haruhi是一个前后端混合快速开发种子项目，前端使用Vue.JS和El
 - config.d/    配置文件样例，在一些自动部署环境下，可以删除这个目录并且使用上面的config目录
 - script/      非服务的一些脚本文件，比如部署和编译
 - app.js       express的初始化文件，设置了各类中间件和错误处理过程
-- model.js     数据库的初始化文件，设置了各种数据库的连接，比如mysql和redis，最后通过exports导出给其他文件调用
+- model.ts     数据库的初始化文件，设置了各种数据库的连接，比如mysql和redis，最后通过exports导出给其他文件调用
 
 ## 命名约定
 
