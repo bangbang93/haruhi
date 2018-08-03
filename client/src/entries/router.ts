@@ -1,21 +1,21 @@
 import VueRouter from 'vue-router'
 
 const routes = [{
-  path: '/1',
+  alias: '/',
   component: () => import('../pages/home/first.vue'),
   name: 'first',
-  alias: '/'
+  path: '/1',
 }, {
-  path: '/2',
   component: () => import('../pages/home/second.vue'),
-  name: 'second'
+  name: 'second',
+  path: '/2',
 }, {
   path: '*',
-  redirect: '/1'
-}];
+  redirect: '/1',
+}]
 
 export const router = new VueRouter({
-  routes,
   mode: 'history',
   base: '/',
-});
+  routes,
+})

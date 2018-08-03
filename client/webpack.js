@@ -1,102 +1,92 @@
 /**
  * Created by bangbang93 on 16/9/20.
  */
-'use strict';
-const path = require('path');
-const projectRoot = path.resolve(__dirname, './src');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+'use strict'
+const path                 = require('path')
+const projectRoot          = path.resolve(__dirname, './src')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 const IS_PRODUCTION = process.env.NODE_ENV === 'production'
 
-let config = (function(){
-  let config = {
-    build: {
-      devtool: false,
-    },
-    dev: {
-      devtool: '#eval-source-map',
-    },
-  };
-  return config[IS_PRODUCTION? 'build' : 'dev']
-})();
-module.exports = Object.assign(config, {
-  mode: IS_PRODUCTION ? 'production': 'development',
-  entry: {
+module.exports = {
+  devtool: IS_PRODUCTION ? false : '#eval-source-map',
+  entry  : {
     index: path.resolve(__dirname, '../client/src/entries/index.ts'),
   },
-  output: {
-    path: path.resolve(__dirname, 'dist'),
+  mode   : IS_PRODUCTION ? 'production' : 'development',
+  output : {
+    path      : path.resolve(__dirname, 'dist'),
     publicPath: '/',
-    filename: '[name].[hash].js'
+    filename  : '[name].[hash].js',
   },
   resolve: {
-    modules: [
+    modules   : [
       path.join(__dirname, 'src'),
       path.join(__dirname, '../node_modules'),
     ],
-    extensions: ['.js', '.vue', '.json', '.ts']
+    extensions: ['.js', '.vue', '.json', '.ts'],
   },
-  module: {
+  module : {
     rules: [
       {
-        test: /\.vue$/,
-        loader: 'vue-loader'
+        test  : /\.vue$/,
+        loader: 'vue-loader',
       },
       {
-        test: /\.js$/,
-        loader: 'babel-loader',
+        test   : /\.js$/,
+        loader : 'babel-loader',
         include: projectRoot,
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
-        test: /\.ts$/,
+        test   : /\.ts$/,
         exclude: /node_modules/,
-        use:[{
-          loader: 'ts-loader',
+        use    : [{
+          loader : 'ts-loader',
           options: {
-            transpileOnly: true,
+            transpileOnly   : true,
             appendTsSuffixTo: [/\.vue$/],
-            configFile: 'tsconfig-fe.json'
-          }
-        }]
+            configFile      : 'tsconfig-fe.json',
+          },
+        }],
       },
       {
         test: /\.css$/,
-        use: IS_PRODUCTION ?
+        use : IS_PRODUCTION ?
           [MiniCssExtractPlugin.loader, 'css-loader'] :
           ['vue-style-loader', 'css-loader'],
       },
       {
         test: /\.s[ca]ss$/,
-        use: IS_PRODUCTION ?
+        use : IS_PRODUCTION ?
           [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'] :
-          ['vue-style-loader', 'css-loader', 'sass-loader']
+          ['vue-style-loader', 'css-loader', 'sass-loader'],
       },
       {
-        test: /\.html$/,
-        loader: 'vue-html-loader'
+        test  : /\.html$/,
+        loader: 'vue-html-loader',
       },
       {
-        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        test  : /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         loader: 'url-loader',
-        query: {
+        query : {
           limit: 10000,
-          name: assetsPath('img/[name].[hash:7].[ext]')
-        }
+          name : assetsPath('img/[name].[hash:7].[ext]'),
+        },
       },
       {
-        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        test  : /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         loader: 'url-loader',
-        query: {
+        query : {
           limit: 10000,
-          name: assetsPath('fonts/[name].[hash:7].[ext]')
-        }
-      }
-    ]
-  }
-});
+          name : assetsPath('fonts/[name].[hash:7].[ext]'),
+        },
+      },
+    ],
+  },
+}
 
-function assetsPath (_path) {
-  var assetsSubDirectory = 'static';
-  return path.posix.join(assetsSubDirectory, _path)
+function assetsPath(p) {
+  var assetsSubDirectory = 'static'
+  return path.posix.join(assetsSubDirectory, p)
 }

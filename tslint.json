@@ -1,0 +1,38 @@
+{
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint:recommended"
+  ],
+  "jsRules": {
+    "quotemark": [true, "single", "avoid-template", "avoid-escape"],
+    "semicolon": [true, "never"],
+    "only-arrow-functions": [true, "allow-declarations", "allow-named-functions"],
+    "no-console": [false],
+    "curly": [true, "ignore-same-line"],
+    "object-literal-sort-keys": [false],
+    "trailing-comma": [true, {
+      "multiline": "always",
+      "singleline": "never"
+    }]
+  },
+  "rules": {
+    "quotemark": [true, "single", "avoid-template", "avoid-escape"],
+    "semicolon": [true, "never"],
+    "only-arrow-functions": [true, "allow-declarations", "allow-named-functions"],
+    "no-console": [false],
+    "curly": [true, "ignore-same-line"],
+    "object-literal-sort-keys": [false],
+    "trailing-comma": [true, {
+      "multiline": "always",
+      "singleline": "never"
+    }]
+  },
+  "rulesDirectory": [],
+  "linterOptions": {
+    "exclude": [
+      "client/dist/**",
+      "dist/**",
+      "config/**"
+    ]
+  }
+}

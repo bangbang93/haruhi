@@ -11,7 +11,8 @@
     "pm2": "pm2 startOrReload process.json",
     "build": "NODE_ENV=production node script/build",
     "update": "npm run build && npm run pm2",
-    "test": "npm run build"
+    "test": "npm run build",
+    "lint": "tslint -p . -c tslint.json"
   },
   "dependencies": {
     "@types/bunyan": "^1.8.4",
@@ -28,7 +29,7 @@
     "cookie-parser": "^1.4.3",
     "debug": "^3.1.0",
     "express": "^4.16.3",
-    "express-promise-router": "^3.0.2",
+    "express-promise-router": "^3.0.3",
     "express-session": "^1.15.6",
     "express-simple-route": "^1.6.2",
     "express-validator": "^5.2.0",
@@ -41,7 +42,8 @@
     "sass-loader": "^7.0.1",
     "serve-favicon": "^2.5.0",
     "ts-node": "^6.0.5",
-    "typescript": "^2.8.3"
+    "tslint": "^5.11.0",
+    "typescript": "^3.0.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
