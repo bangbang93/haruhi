@@ -1,7 +1,7 @@
 /**
  * Created by bangbang93 on 2017/3/20.
  */
-'use strict';
+'use strict'
 const configure = {
   database: require('./default/database'),
   session: require('./default/session'),
@@ -10,13 +10,14 @@ const configure = {
 
 const index = Object.keys(configure);
 
-const env = process.env.NODE_ENV || 'development';
+const env = process.env.NODE_ENV || 'development'
 
-index.forEach((config)=>{
+index.forEach((config) => {
   try {
     require.resolve(`./${env}/${config}`)
-    exports[config] = require(`./${env}/${config}`);
+    configure[config] = require(`./${env}/${config}`)
+    // tslint:disable-next-line
   } catch {}
-});
+})
 
 module.exports = configure
