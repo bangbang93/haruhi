@@ -5,6 +5,7 @@ const favicon      = require('serve-favicon')
 const logger       = require('morgan')
 const cookieParser = require('cookie-parser')
 const bodyParser   = require('body-parser')
+const { haruhiMiddleware } = require('./module/middlewares')
 const history      = require('connect-history-api-fallback')
 
 const app = express()
@@ -32,6 +33,7 @@ app.use(session(Object.assign({
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
+app.use(haruhiMiddleware)
 
 app.use('/', require('./route/index'))
 
