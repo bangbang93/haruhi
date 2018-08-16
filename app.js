@@ -48,17 +48,17 @@ if (app.get('env') === 'development') {
 }
 
 if (app.get('env') === 'development') {
-  let webpack       = require('webpack')
-  let webpackConfig = require('./client/webpack.conf')
-  let compiler      = webpack(webpackConfig)
-  let devMiddleware = require('webpack-dev-middleware')(compiler, {
+  const webpack       = require('webpack')
+  const webpackConfig = require('./client/webpack.conf')
+  const compiler      = webpack(webpackConfig)
+  const devMiddleware = require('webpack-dev-middleware')(compiler, {
     publicPath: webpackConfig.output.publicPath,
     stats     : {
       chunks: false,
       colors: true,
     },
   })
-  let hotMiddleware = require('webpack-hot-middleware')(compiler)
+  const hotMiddleware = require('webpack-hot-middleware')(compiler)
   app.use(devMiddleware)
   app.use(hotMiddleware)
 }
@@ -67,9 +67,10 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
-  res.status(404).json({
-    message: 'not found',
-  })
+  res.status(404)
+    .json({
+      message: 'not found',
+    })
 })
 
 // error handler
@@ -77,18 +78,20 @@ if (app.get('env') === 'development') {
   app.use((err, req, res, next) => {
     console.error(err)
     if (res.headersSent) return
-    res.status(err.status || 500).json({
-      err,
-      message: err.message,
-    })
+    res.status(err.status || 500)
+      .json({
+        err,
+        message: err.message,
+      })
   })
 } else {
   app.use((err, req, res, next) => {
     console.error(err)
     if (res.headersSent) return
-    res.status(err.status || 500).json({
-      message: err.message,
-    })
+    res.status(err.status || 500)
+      .json({
+        message: err.message,
+      })
   })
 }
 

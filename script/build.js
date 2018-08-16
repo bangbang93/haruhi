@@ -2,6 +2,7 @@
  * Created by bangbang93 on 16/10/12.
  */
 'use strict'
+// tslint:disable:no-console
 
 // https://github.com/shelljs/shelljs
 const shell          = require('shelljs')
@@ -11,10 +12,11 @@ const ora           = require('ora')
 const webpack       = require('webpack')
 const webpackConfig = require('../client/webpack.conf')
 
-console.log(
-  '  Tip:\n' +
-  '  Built files are meant to be served over an HTTP server.\n' +
-  '  Opening index.html over file:// won\'t work.\n',
+console.log(`
+  Tip:
+  Built files are meant to be served over an HTTP server.
+  Opening index.html over file:// won\'t work.
+`,
 )
 
 const spinner = ora('building for production...')
@@ -29,5 +31,6 @@ webpack(webpackConfig, (err, stats) => {
     children    : false,
     chunks      : false,
     chunkModules: false,
-  }) + '\n')
+  }))
+  console.log()
 })

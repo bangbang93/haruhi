@@ -6,7 +6,7 @@ const router = Router()
 
 router.get('/', async (req, res) => {
   await new Promise( (resolve, reject) => {
-    setTimeout(() => resolve(), 2000)
+    setTimeout(resolve, 2000)
   })
   res.json({message: 'await'})
 })
