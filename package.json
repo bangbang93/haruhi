@@ -35,7 +35,7 @@
     "express-session": "^1.15.6",
     "express-simple-route": "^1.6.3",
     "express-validator": "^5.2.0",
-    "ioredis": "^3.2.2",
+    "ioredis": "^4.0.0",
     "loud-rejection": "^1.6.0",
     "moment": "^2.22.1",
     "mongoose": "^5.1.2",
