@@ -86,3 +86,6 @@ jspm_packages
 public/
 !public/.gitkeep
 client/dist
+config/*.development.*
+.idea/
+apidoc/

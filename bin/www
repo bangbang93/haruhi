@@ -1,5 +1,9 @@
 #!/usr/bin/env node
-
+if (process.env.NODE_ENV === 'production') {
+  require('ts-node/register/transpile-only')
+} else {
+  require('ts-node/register/type-check')
+}
 /**
  * Module dependencies.
  */
@@ -87,3 +91,5 @@ function onListening() {
     : 'port ' + addr.port;
   console.error('Listening on ' + bind);
 }
+
+require('loud-rejection')();

@@ -1,134 +1,92 @@
 /**
  * Created by bangbang93 on 16/9/20.
  */
-'use strict';
-const path = require('path');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const projectRoot = path.resolve(__dirname, './src');
+'use strict'
+const path                 = require('path')
+const projectRoot          = path.resolve(__dirname, './src')
+const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
-let config = (function(){
-  let config = {
-    build: {
-      index: path.resolve(__dirname, '../client/dist/index.html'),
-      assetsRoot: path.resolve(__dirname, '../client/dist'),
-      assetsSubDirectory: 'static',
-      assetsPublicPath: '/',
-      productionGzip: true,
-      productionGzipExtensions: ['js', 'css'],
-      devtool: false,
-    },
-    dev: {
-      port: 8080,
-      assetsSubDirectory: 'static',
-      assetsPublicPath: '/',
-      cssSourceMap: false,
-      devtool: '#eval-source-map',
-    },
-  };
-  return config[process.env.NODE_ENV == 'production'? 'build' : 'dev']
-})();
-module.exports = Object.assign(config, {
-  entry: {
-    index: path.resolve(__dirname, '../client/src/entries/index.js'),
+const IS_PRODUCTION = process.env.NODE_ENV === 'production'
+
+module.exports = {
+  devtool: IS_PRODUCTION ? false : '#eval-source-map',
+  entry  : {
+    index: path.resolve(__dirname, '../client/src/entries/index.ts'),
   },
-  output: {
-    path: path.resolve(__dirname, '../public'),
+  mode   : IS_PRODUCTION ? 'production' : 'development',
+  output : {
+    path      : path.resolve(__dirname, 'dist'),
     publicPath: '/',
-    filename: '[name].[hash].js'
+    filename  : '[name].[hash].js',
   },
   resolve: {
-    extensions: ['', '.js', '.vue'],
-    fallback: [path.join(__dirname, '../node_modules')],
-    alias: {
-      'src': path.resolve(__dirname, '../client/src'),
-      'assets': path.resolve(__dirname, '../client/src/assets'),
-      'components': path.resolve(__dirname, '../client/src/components')
-    }
+    modules   : [
+      path.join(__dirname, 'src'),
+      path.join(__dirname, '../node_modules'),
+    ],
+    extensions: ['.js', '.vue', '.json', '.ts'],
   },
-  resolveLoader: {
-    fallback: [path.join(__dirname, '../node_modules')]
-  },
-  module: {
-    loaders: [
+  module : {
+    rules: [
       {
-        test: /\.vue$/,
-        loader: 'vue'
+        test  : /\.vue$/,
+        loader: 'vue-loader',
       },
       {
-        test: /\.js$/,
-        loader: 'babel',
+        test   : /\.js$/,
+        loader : 'babel-loader',
         include: projectRoot,
-        exclude: /node_modules/
+        exclude: /node_modules/,
       },
       {
-        test: /\.json$/,
-        loader: 'json'
+        test   : /\.ts$/,
+        exclude: /node_modules/,
+        use    : [{
+          loader : 'ts-loader',
+          options: {
+            transpileOnly   : true,
+            appendTsSuffixTo: [/\.vue$/],
+            configFile      : 'tsconfig-fe.json',
+          },
+        }],
       },
       {
-        test: /\.html$/,
-        loader: 'vue-html'
+        test: /\.css$/,
+        use : IS_PRODUCTION ?
+          [MiniCssExtractPlugin.loader, 'css-loader'] :
+          ['vue-style-loader', 'css-loader'],
       },
       {
-        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
-        loader: 'url',
-        query: {
+        test: /\.s[ca]ss$/,
+        use : IS_PRODUCTION ?
+          [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'] :
+          ['vue-style-loader', 'css-loader', 'sass-loader'],
+      },
+      {
+        test  : /\.html$/,
+        loader: 'vue-html-loader',
+      },
+      {
+        test  : /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        loader: 'url-loader',
+        query : {
           limit: 10000,
-          name: assetsPath('img/[name].[hash:7].[ext]')
-        }
+          name : assetsPath('img/[name].[hash:7].[ext]'),
+        },
       },
       {
-        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
-        loader: 'url',
-        query: {
+        test  : /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+        loader: 'url-loader',
+        query : {
           limit: 10000,
-          name: assetsPath('fonts/[name].[hash:7].[ext]')
-        }
-      }
-    ]
+          name : assetsPath('fonts/[name].[hash:7].[ext]'),
+        },
+      },
+    ],
   },
-  vue: {
-    loaders: cssLoaders()
-  }
-});
-
-function assetsPath (_path) {
-  var assetsSubDirectory = config['assetsSubDirectory'];
-  return path.posix.join(assetsSubDirectory, _path)
 }
 
-function cssLoaders(options) {
-  options = options || {};
-  // generate loader string to be used with extract text plugin
-  function generateLoaders (loaders) {
-    var sourceLoader = loaders.map(function (loader) {
-      var extraParamChar;
-      if (/\?/.test(loader)) {
-        loader = loader.replace(/\?/, '-loader?');
-        extraParamChar = '&'
-      } else {
-        loader = loader + '-loader';
-        extraParamChar = '?'
-      }
-      return loader + (options.sourceMap ? extraParamChar + 'sourceMap' : '')
-    }).join('!');
-
-    if (options.extract) {
-      return ExtractTextPlugin.extract('vue-style-loader', sourceLoader)
-    } else {
-      return ['vue-style-loader', sourceLoader].join('!')
-    }
-  }
-
-  // http://vuejs.github.io/vue-loader/configurations/extract-css.html
-  return {
-    css: generateLoaders(['css']),
-    postcss: generateLoaders(['css']),
-    less: generateLoaders(['css', 'less']),
-    sass: generateLoaders(['css', 'sass?indentedSyntax']),
-    scss: generateLoaders(['css', 'sass']),
-    stylus: generateLoaders(['css', 'stylus']),
-    styl: generateLoaders(['css', 'stylus'])
-  }
+function assetsPath(p) {
+  const assetsSubDirectory = 'static'
+  return path.posix.join(assetsSubDirectory, p)
 }
-
-module.exports.cssLoaders = cssLoaders;
