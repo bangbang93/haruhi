@@ -4,6 +4,10 @@ import {logger as loggerConfig} from '../config'
 
 const Logger = bunyan.createLogger(loggerConfig.middleware as any)
 
+export interface IServicedRequest<T> extends Request {
+  service: T
+}
+
 declare global {
   namespace Express {
     // tslint:disable-next-line

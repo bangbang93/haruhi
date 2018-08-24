@@ -1,8 +1,12 @@
 'use strict'
 
-import {Request, Response} from 'express'
+import {Response} from 'express'
 import Router from 'express-promise-router'
+import {IServicedRequest} from '../module/middlewares'
+import {UserService} from '../service/user'
 const router = Router()
+
+type Request = IServicedRequest<UserService>
 
 router.get('/', async (req, res) => {
   await new Promise( (resolve, reject) => {
