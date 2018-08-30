@@ -19,6 +19,7 @@
   ],
   "dependencies": {
     "apidoc": "^0.17.6",
+    "bcrypt": "^3.0.0",
     "bluebird": "^3.5.1",
     "body-parser": "^1.18.3",
     "bunyan": "^1.8.12",
@@ -46,11 +47,12 @@
     "typescript": "^3.0.1"
   },
   "devDependencies": {
+    "@types/bcrypt": "^2.0.0",
+    "@types/bunyan": "^1.8.4",
     "@types/express": "^4.11.1",
     "@types/ioredis": "^3.2.8",
     "@types/mongoose": "^5.0.14",
     "@types/node": "^10.1.2",
-    "@types/bunyan": "^1.8.4",
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.4",
     "babel-plugin-transform-runtime": "^6.15.0",
@@ -65,8 +67,8 @@
     "file-loader": "^1.1.11",
     "html-webpack-plugin": "^3.2.0",
     "mini-css-extract-plugin": "^0.4.0",
-    "pre-commit": "^1.2.2",
     "ora": "^3.0.0",
+    "pre-commit": "^1.2.2",
     "shelljs": "^0.8.2",
     "style-loader": "^0.22.0",
     "ts-loader": "^4.3.0",
