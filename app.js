@@ -74,11 +74,14 @@ app.use((req, res, next) => {
 })
 
 // error handler
-if (app.get('env') === 'development') {
+if (app.get('env') !== 'production') {
   app.use((err, req, res, next) => {
-    console.error(err)
+    if (!err.status) {
+      req.logger.fatal({err})
+      err.status = 500
+    }
     if (res.headersSent) return
-    res.status(err.status || 500)
+    res.status(err.status)
       .json({
         err,
         message: err.message,
@@ -86,7 +89,10 @@ if (app.get('env') === 'development') {
   })
 } else {
   app.use((err, req, res, next) => {
-    console.error(err)
+    if (!err.status) {
+      req.logger.fatal({err})
+      err.status = 500
+    }
     if (res.headersSent) return
     res.status(err.status || 500)
       .json({

@@ -1,10 +1,10 @@
 /**
  * Created by bangbang93 on 2017/4/28.
  */
-'use strict';
-const bunyanPrettyStream = require('bunyan-prettystream')
+'use strict'
+const BunyanPrettyStream = require('bunyan-prettystream')
 
-const prettyStream = new bunyanPrettyStream()
+const prettyStream = new BunyanPrettyStream()
 prettyStream.pipe(process.stdout)
 
 module.exports = {
@@ -14,17 +14,9 @@ module.exports = {
     streams: [{
       type: 'raw',
       stream: prettyStream,
+    }, {
+      level: 'fatal',
+      stream: process.stderr,
     }],
-  },
-  service: {
-    socket: {
-      name: 'service',
-      service: 'socket',
-      level: 'debug',
-      streams: [{
-        type: 'raw',
-        stream: prettyStream,
-      }],
-    },
   },
 }

@@ -16,7 +16,9 @@ router.get('/', async (req, res) => {
 })
 
 router.get('/errors', async (req: Request, res: Response) => {
-  throw new Error('some error')
+  const err = new Error('some error')
+  err['foo'] = 'bar'
+  throw err
 })
 
 module.exports = router
