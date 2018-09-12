@@ -43,7 +43,7 @@
     "node-sass": "^4.9.3",
     "redis": "^2.6.5",
     "sass-loader": "^7.0.1",
-    "sequelize": "^3.27.0",
+    "sequelize": "^4.38.1",
     "serve-favicon": "^2.5.0",
     "ts-node": "^7.0.1",
     "tslint": "^5.11.0",
