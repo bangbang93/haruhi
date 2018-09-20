@@ -44,7 +44,7 @@ export function haruhiMiddleware(req: Request, res: Response, next: NextFunction
 export function checkValidationResult(req: Request, res: Response, next: NextFunction) {
   const validation = validationResult(req)
   if (!validation.isEmpty()) {
-    return res.json(400)
+    return res.status(400)
       .json(validation.mapped())
   }
   next()
