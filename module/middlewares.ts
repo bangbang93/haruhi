@@ -6,7 +6,7 @@ import {validationResult} from 'express-validator/check'
 import {logger as loggerConfig} from '../config'
 
 const Logger = bunyan.createLogger({
-  ...loggerConfig.middleware,
+  ...loggerConfig('middleware'),
   serializers: {
     ...stdSerializers,
     err: errSerializer,
