@@ -15,6 +15,14 @@ const streams = [{
   stream: process.stderr,
 }]
 
+const Loggers = {
+  middleware: {
+    name: 'haruhi',
+    level: 'info',
+    streams,
+  },
+}
+
 module.exports = function getLogger(name) {
   const defaultLogger = {
     name,
@@ -22,13 +30,7 @@ module.exports = function getLogger(name) {
     streams,
   }
 
-  let loggers = {
-    middleware: {
-      name: 'haruhi',
-      level: 'info',
-      streams,
-    },
-  }
+  let loggers = Loggers
   const steps = name.split('.')
   for (const step of steps) {
     if (step in loggers) {
