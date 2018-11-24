@@ -9,7 +9,7 @@ const router = Router()
 type Request = IServicedRequest<UserService>
 
 router.get('/', async (req, res) => {
-  await new Promise( (resolve, reject) => {
+  await new Promise((resolve, reject) => {
     setTimeout(resolve, 2000)
   })
   res.json({message: 'await'})

@@ -2,11 +2,11 @@ import VueRouter from 'vue-router'
 
 const routes = [{
   alias: '/',
-  component: () => import('../pages/home/first.vue'),
+  component: async () => import('../pages/home/first.vue'),
   name: 'first',
   path: '/1',
 }, {
-  component: () => import('../pages/home/second.vue'),
+  component: async () => import('../pages/home/second.vue'),
   name: 'second',
   path: '/2',
 }, {
