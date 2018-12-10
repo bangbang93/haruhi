@@ -77,7 +77,7 @@
     "style-loader": "^0.23.1",
     "ts-loader": "^4.3.0",
     "url-loader": "^1.0.0",
-    "vue": "^2.5.16",
+    "vue": "^2.5.20",
     "vue-fetch": "^1.0.2",
     "vue-html-loader": "^1.2.3",
     "vue-loader": "^15.2.0",
