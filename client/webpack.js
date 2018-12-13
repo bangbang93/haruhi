@@ -87,6 +87,6 @@ module.exports = {
 }
 
 function assetsPath(p) {
-  var assetsSubDirectory = 'static'
+  const assetsSubDirectory = 'static'
   return path.posix.join(assetsSubDirectory, p)
 }

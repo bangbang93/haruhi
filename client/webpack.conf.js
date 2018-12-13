@@ -2,6 +2,7 @@
  * Created by bangbang93 on 16/9/30.
  */
 'use strict'
+// tslint:disable:no-console
 
 const config               = require('./webpack')
 const webpack              = require('webpack')
@@ -30,14 +31,15 @@ if (IS_PRODUCTION) {
     }),
     new CleanPlugin(config.output.path, {
       exclude: ['.gitkeep'],
-      root   : require('path').resolve('..'),
+      root   : require('path')
+        .resolve('..'),
     }),
     new MiniCssExtractPlugin({
       chunkFilename: '[id].css',
       filename     : '[name].[hash].css',
     }),
   ]
-  let entries = Object.keys(config.entry)
+  const entries = Object.keys(config.entry)
   entries.forEach((entry) => {
     plugins.push(new HtmlWebpackPlugin({
       chunks  : [entry, 'vendor.js'],
@@ -49,14 +51,15 @@ if (IS_PRODUCTION) {
 } else {
 
 // add hot-reload related code to entry chunks
-  Object.keys(config.entry).forEach((name) => {
-    config.entry[name] = ['./client/dev-client'].concat(config.entry[name])
-  })
+  Object.keys(config.entry)
+    .forEach((name) => {
+      config.entry[name] = ['./client/dev-client'].concat(config.entry[name])
+    })
   plugins     = [
     ...plugins,
     new webpack.HotModuleReplacementPlugin(),
   ]
-  let entries = Object.keys(config.entry)
+  const entries = Object.keys(config.entry)
   entries.forEach((entry) => {
     plugins.push(new HtmlWebpackPlugin({
       chunks  : [entry],

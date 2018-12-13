@@ -5,6 +5,7 @@ const favicon      = require('serve-favicon')
 const logger       = require('morgan')
 const cookieParser = require('cookie-parser')
 const bodyParser   = require('body-parser')
+const { haruhiMiddleware } = require('./module/middlewares')
 const history      = require('connect-history-api-fallback')
 
 const app = express()
@@ -32,6 +33,7 @@ app.use(session(Object.assign({
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
+app.use(haruhiMiddleware)
 
 app.use('/', require('./route/index'))
 
@@ -46,17 +48,17 @@ if (app.get('env') === 'development') {
 }
 
 if (app.get('env') === 'development') {
-  let webpack       = require('webpack')
-  let webpackConfig = require('./client/webpack.conf')
-  let compiler      = webpack(webpackConfig)
-  let devMiddleware = require('webpack-dev-middleware')(compiler, {
+  const webpack       = require('webpack')
+  const webpackConfig = require('./client/webpack.conf')
+  const compiler      = webpack(webpackConfig)
+  const devMiddleware = require('webpack-dev-middleware')(compiler, {
     publicPath: webpackConfig.output.publicPath,
     stats     : {
       chunks: false,
       colors: true,
     },
   })
-  let hotMiddleware = require('webpack-hot-middleware')(compiler)
+  const hotMiddleware = require('webpack-hot-middleware')(compiler)
   app.use(devMiddleware)
   app.use(hotMiddleware)
 }
@@ -65,28 +67,37 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
-  res.status(404).json({
-    message: 'not found',
-  })
+  res.status(404)
+    .json({
+      message: 'not found',
+    })
 })
 
 // error handler
-if (app.get('env') === 'development') {
+if (app.get('env') !== 'production') {
   app.use((err, req, res, next) => {
-    console.error(err)
+    if (!err.status) {
+      req.logger.fatal({err})
+      err.status = 500
+    }
     if (res.headersSent) return
-    res.status(err.status || 500).json({
-      err,
-      message: err.message,
-    })
+    res.status(err.status)
+      .json({
+        err,
+        message: err.message,
+      })
   })
 } else {
   app.use((err, req, res, next) => {
-    console.error(err)
+    if (!err.status) {
+      req.logger.fatal({err})
+      err.status = 500
+    }
     if (res.headersSent) return
-    res.status(err.status || 500).json({
-      message: err.message,
-    })
+    res.status(err.status || 500)
+      .json({
+        message: err.message,
+      })
   })
 }
 

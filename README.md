@@ -62,7 +62,7 @@ haruhi是一个前后端混合快速开发种子项目，前端使用Vue.JS和El
   a: 'b',
 }
 ```
-- 使用分号
+- 不使用分号
 - 大括号不换行
 ```javascript 
 function foo(){
