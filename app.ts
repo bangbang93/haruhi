@@ -1,13 +1,16 @@
 'use strict'
-const express      = require('express')
-const path         = require('path')
-const favicon      = require('serve-favicon')
-const logger       = require('morgan')
-const cookieParser = require('cookie-parser')
-const bodyParser   = require('body-parser')
-const { haruhiMiddleware } = require('./module/middlewares')
-const history      = require('connect-history-api-fallback')
-const mongoSanitize = require('express-mongo-sanitize')
+import * as bodyParser from 'body-parser'
+import * as history from 'connect-history-api-fallback'
+import * as connectRedis from 'connect-redis'
+import * as cookieParser from 'cookie-parser'
+import * as express from 'express'
+import * as mongoSanitize from 'express-mongo-sanitize'
+import * as session from 'express-session'
+import * as expressSimpleRoute from 'express-simple-route'
+import * as logger from 'morgan'
+import * as path from 'path'
+import * as Config from './config'
+import {haruhiMiddleware} from './module/middlewares'
 
 const app = express()
 app.set('trust proxy', ['loopback', 'uniquelocal'])
@@ -17,29 +20,28 @@ if (app.get('env') === 'development') {
 } else {
   app.use(logger('combined'))
 }
-
-const session    = require('express-session')
-const RedisStore = require('connect-redis')(session)
+const RedisStore = connectRedis(session)
 
 app.use(cookieParser())
-app.use(session(Object.assign({
+app.use(session({
     store: new RedisStore({
       prefix: 'haruhi:session:',
-      ...require('./config').database.redis,
+      ...Config.database.redis,
     }),
-  }, require('./config').session),
+    ...Config.session},
 ))
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
+// app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
 app.use(mongoSanitize)
 app.use(haruhiMiddleware)
 
+// tslint:disable-next-line:no-var-requires
 app.use('/', require('./route/index'))
 
-require('express-simple-route')(path.join(__dirname, 'route'), app)
+expressSimpleRoute(path.join(__dirname, 'route'), app)
 
 if (app.get('env') === 'development') {
   app.use(history({
@@ -49,6 +51,7 @@ if (app.get('env') === 'development') {
   app.use(history())
 }
 
+// tslint:disable:no-var-requires
 if (app.get('env') === 'development') {
   const webpack       = require('webpack')
   const webpackConfig = require('./client/webpack.conf')
@@ -64,6 +67,7 @@ if (app.get('env') === 'development') {
   app.use(devMiddleware)
   app.use(hotMiddleware)
 }
+// tslint:enable:no-var-requires
 
 app.use(express.static(path.join(__dirname, 'public')))
 
