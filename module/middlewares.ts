@@ -21,6 +21,8 @@ declare global {
     // tslint:disable-next-line
     interface Request {
       logger: bunyan
+      getPage(): number
+      getLimit(): number
     }
     // tslint:disable-next-line
     interface Response {
@@ -37,6 +39,8 @@ export function haruhiMiddleware(req: Request, res: Response, next: NextFunction
       })
   }
   req.logger = Logger.child({req})
+  req.getPage = () => Math.max(req.query.page, 1) || 1
+  req.getLimit = () => Math.min(req.query.limit, 500) || 10
   next()
 }
 
