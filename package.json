@@ -24,7 +24,7 @@
     "body-parser": "^1.18.3",
     "bunyan": "^1.8.12",
     "bunyan-pretty-stream": "^1.0.1",
-    "bunyan-serializer-error": "0.0.1",
+    "bunyan-serializer-error": "0.0.2",
     "connect-history-api-fallback": "^1.5.0",
     "connect-redis": "^3.3.3",
     "cookie-parser": "^1.4.3",
