@@ -12,7 +12,7 @@
     "build": "NODE_ENV=production node script/build",
     "update": "npm run build && npm run pm2",
     "test": "npm run build",
-    "lint": "tslint -p . -c tslint.json"
+    "lint": "tslint -p . -c tslint.json && eslint --ext .js,.ts,.vue . --fix"
   },
   "pre-commit": [
     "lint"
@@ -46,8 +46,7 @@
     "sequelize": "^5.8.5",
     "serve-favicon": "^2.5.0",
     "ts-node": "^8.1.0",
-    "tslint": "^5.11.0",
-    "typescript": "^3.0.1"
+    "tslint": "^5.11.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
@@ -67,12 +66,16 @@
     "@types/mongoose": "^5.0.14",
     "@types/morgan": "^1.7.35",
     "@types/node": "^12.0.0",
+    "@typescript-eslint/eslint-plugin": "^1.12.0",
+    "@typescript-eslint/parser": "^1.12.0",
     "babel-loader": "^8.0.4",
     "bunyan-prettystream": "^0.1.3",
     "clean-webpack-plugin": "^1.0.0",
     "css-loader": "^3.0.0",
     "element-ui": "^2.3.9",
     "es6-promise": "^4.2.4",
+    "eslint": "^6.0.1",
+    "eslint-plugin-vue": "^5.2.3",
     "eventsource-polyfill": "^0.9.6",
     "file-loader": "^4.0.0",
     "html-webpack-plugin": "^3.2.0",
@@ -80,9 +83,9 @@
     "node-sass": "^4.12.0",
     "ora": "^3.0.0",
     "pre-commit": "^1.2.2",
-    "shelljs": "^0.8.2",
     "style-loader": "^0.23.1",
     "ts-loader": "^4.3.0",
+    "typescript": "^3.5.3",
     "url-loader": "^2.0.1",
     "vue": "^2.5.20",
     "vue-fetch": "^1.0.2",

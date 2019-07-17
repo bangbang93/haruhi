@@ -4,6 +4,7 @@
 'use strict'
 // tslint:disable:no-console
 
+/* eslint-disable @typescript-eslint/no-var-requires */
 const config               = require('./webpack')
 const webpack              = require('webpack')
 const merge                = require('webpack-merge')
@@ -50,7 +51,7 @@ if (IS_PRODUCTION) {
   })
 } else {
 
-// add hot-reload related code to entry chunks
+  // add hot-reload related code to entry chunks
   Object.keys(config.entry)
     .forEach((name) => {
       config.entry[name] = ['./client/dev-client'].concat(config.entry[name])

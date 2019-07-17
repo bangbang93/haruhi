@@ -24,11 +24,11 @@ const RedisStore = connectRedis(session)
 
 app.use(cookieParser())
 app.use(session({
-    store: new RedisStore({
-      prefix: 'haruhi:session:',
-      ...Config.database.redis,
-    }),
-    ...Config.session},
+  store: new RedisStore({
+    prefix: 'haruhi:session:',
+    ...Config.database.redis,
+  }),
+  ...Config.session},
 ))
 
 // uncomment after placing your favicon in /public
@@ -53,7 +53,9 @@ if (app.get('env') === 'development') {
 
 // tslint:disable:no-var-requires
 if (app.get('env') === 'development') {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
   const webpack       = require('webpack')
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
   const webpackConfig = require('./client/webpack.conf')
   const compiler      = webpack(webpackConfig)
   const devMiddleware = require('webpack-dev-middleware')(compiler, {
@@ -72,7 +74,8 @@ if (app.get('env') === 'development') {
 app.use(express.static(path.join(__dirname, 'public')))
 
 // catch 404 and forward to error handler
-app.use((req, res, next) => {
+/* eslint-disable @typescript-eslint/no-unused-vars */
+app.use((req, res, next): void => {
   res.status(404)
     .json({
       message: 'not found',
@@ -81,7 +84,7 @@ app.use((req, res, next) => {
 
 // error handler
 if (app.get('env') !== 'production') {
-  app.use((err, req, res, next) => {
+  app.use((err, req, res, next): void => {
     if (!err.status) {
       req.logger.fatal({err})
       err.status = 500
@@ -94,7 +97,7 @@ if (app.get('env') !== 'production') {
       })
   })
 } else {
-  app.use((err, req, res, next) => {
+  app.use((err, req, res, next): void => {
     if (!err.status) {
       req.logger.fatal({err})
       err.status = 500

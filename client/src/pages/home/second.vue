@@ -1,5 +1,5 @@
 <template>
-    <div>
-        second
-    </div>
+  <div>
+    second
+  </div>
 </template>

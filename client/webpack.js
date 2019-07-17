@@ -2,6 +2,7 @@
  * Created by bangbang93 on 16/9/20.
  */
 'use strict'
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path                 = require('path')
 const projectRoot          = path.resolve(__dirname, './src')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')

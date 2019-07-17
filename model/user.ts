@@ -29,7 +29,7 @@ const schema = new mongoose.Schema({
   },
 })
 
-schema.statics.getByUsername = function (this: IUserModel, username: string) {
+schema.statics.getByUsername = async function (this: IUserModel, username: string): Promise<IUserDocument> {
   return this.findOne({
     username,
   })

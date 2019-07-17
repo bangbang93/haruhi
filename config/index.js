@@ -8,7 +8,7 @@ const configure = {
   logger: require('./default/logger'),
 }
 
-const index = Object.keys(configure);
+const index = Object.keys(configure)
 
 const env = process.env.NODE_ENV || 'development'
 
@@ -16,7 +16,7 @@ index.forEach((config) => {
   try {
     require.resolve(`./${env}/${config}`)
     configure[config] = require(`./${env}/${config}`)
-    // tslint:disable-next-line
+    /* eslint-disable-next-line no-empty */// tslint:disable-next-line
   } catch {}
 })
 

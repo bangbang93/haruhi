@@ -1,7 +1,7 @@
 /**
  * Created by bangbang93 on 2017/3/1.
  */
-'use strict';
+'use strict'
 const CONFIG = {
   dev: {
     mysql: {
@@ -11,9 +11,9 @@ const CONFIG = {
       database: 'cp',
     },
     redis: '',
-  }
-};
+  },
+}
 
-const ENV = process.env.NODE_ENV || 'dev';
+const ENV = process.env.NODE_ENV || 'dev'
 
-module.exports = CONFIG[ENV];
+module.exports = CONFIG[ENV]

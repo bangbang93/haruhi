@@ -2,6 +2,7 @@
  * Created by bangbang93 on 2017/4/28.
  */
 'use strict'
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const BunyanPrettyStream = require('bunyan-prettystream')
 
 const prettyStream = new BunyanPrettyStream()
