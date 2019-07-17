@@ -34,7 +34,7 @@
     "express-promise-router": "^3.0.3",
     "express-session": "^1.15.6",
     "express-simple-route": "^1.6.3",
-    "express-validator": "^5.2.0",
+    "express-validator": "^6.1.1",
     "http-errors": "^1.7.1",
     "ioredis": "^4.0.0",
     "loud-rejection": "^2.0.0",
