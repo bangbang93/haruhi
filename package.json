@@ -83,7 +83,7 @@
     "shelljs": "^0.8.2",
     "style-loader": "^0.23.1",
     "ts-loader": "^4.3.0",
-    "url-loader": "^1.0.0",
+    "url-loader": "^2.0.1",
     "vue": "^2.5.20",
     "vue-fetch": "^1.0.2",
     "vue-html-loader": "^1.2.3",
