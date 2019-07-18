@@ -1,10 +1,14 @@
 <template>
-    <div>
-        <h1>title</h1>
-        <router-link to="1">first</router-link>
-        <router-link to="2">second</router-link>
-        <router-view></router-view>
-    </div>
+  <div>
+    <h1>title</h1>
+    <router-link to="1">
+      first
+    </router-link>
+    <router-link to="2">
+      second
+    </router-link>
+    <router-view />
+  </div>
 </template>
 <style>
     body{
@@ -12,11 +16,11 @@
     }
 </style>
 <script>
-    export default{
-        data(){
-            return{
-                msg:'hello vue'
-            }
-        }
+export default {
+  data() {
+    return {
+      msg: 'hello vue',
     }
+  },
+}
 </script>

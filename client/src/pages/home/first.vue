@@ -1,7 +1,7 @@
 <template>
-    <div>
-        first
-    </div>
+  <div>
+    first
+  </div>
 </template>
 <style lang="scss" scoped="">
     div {
