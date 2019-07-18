@@ -12,7 +12,7 @@
     "build": "NODE_ENV=production node script/build",
     "update": "npm run build && npm run pm2",
     "test": "npm run build",
-    "lint": "tslint -p . -c tslint.json && eslint --ext .js,.ts,.vue . --fix"
+    "lint": "eslint --ext .js,.ts,.vue . --fix"
   },
   "pre-commit": [
     "lint"
@@ -45,8 +45,7 @@
     "sass-loader": "^7.0.1",
     "sequelize": "^5.8.5",
     "serve-favicon": "^2.5.0",
-    "ts-node": "^8.1.0",
-    "tslint": "^5.11.0"
+    "ts-node": "^8.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",

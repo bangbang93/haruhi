@@ -38,7 +38,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.use(mongoSanitize)
 app.use(haruhiMiddleware)
 
-/* eslint-disable-next-line @typescript-eslint/no-require-imports */// tslint:disable-next-line:no-var-requires
+/* eslint-disable-next-line @typescript-eslint/no-require-imports */
 app.use('/', require('./route/index'))
 
 expressSimpleRoute(path.join(__dirname, 'route'), app)
@@ -52,7 +52,6 @@ if (app.get('env') === 'development') {
 }
 
 /* eslint-disable @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports */
-// tslint:disable:no-var-requires
 if (app.get('env') === 'development') {
   const webpack       = require('webpack')
   const webpackConfig = require('./client/webpack.conf')
@@ -69,7 +68,6 @@ if (app.get('env') === 'development') {
   app.use(hotMiddleware)
 }
 /* eslint-enable @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports */
-// tslint:enable:no-var-requires
 
 app.use(express.static(path.join(__dirname, 'public')))
 

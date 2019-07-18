@@ -2,7 +2,6 @@
  * Created by bangbang93 on 16/10/12.
  */
 'use strict'
-// tslint:disable:no-console
 /* eslint-disable @typescript-eslint/no-var-requires,@typescript-eslint/no-require-imports,no-console */
 
 process.env.NODE_ENV = 'production'

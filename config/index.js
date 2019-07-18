@@ -17,7 +17,7 @@ index.forEach((config) => {
   try {
     require.resolve(`./${env}/${config}`)
     configure[config] = require(`./${env}/${config}`)
-    /* eslint-disable-next-line no-empty */// tslint:disable-next-line
+    /* eslint-disable-next-line no-empty */
   } catch {}
 })
 

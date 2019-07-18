@@ -2,8 +2,6 @@
  * Created by bangbang93 on 16/9/30.
  */
 'use strict'
-// tslint:disable:no-console
-
 /* eslint-disable @typescript-eslint/no-var-requires, no-console, @typescript-eslint/no-require-imports */
 const config               = require('./webpack')
 const webpack              = require('webpack')

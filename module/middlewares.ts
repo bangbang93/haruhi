@@ -19,13 +19,13 @@ export interface IServicedRequest<T> extends Request {
 declare global {
   // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace Express {
-    /* eslint-disable-next-line */ // tslint:disable-next-line
+    /* eslint-disable-next-line */
     interface Request {
       logger: bunyan
       getPage(): number
       getLimit(): number
     }
-    /* eslint-disable-next-line */ // tslint:disable-next-line
+    /* eslint-disable-next-line */
     interface Response {
       missing(fields: string | string[]): this
     }
