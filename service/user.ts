@@ -2,7 +2,7 @@
  * Created by bangbang93 on 2017/3/1.
  */
 import * as bcrypt from 'bcrypt'
-import {UserModel} from '../model/user'
+import {IUserDocument, UserModel} from '../model/user'
 
 export class UserService {
   public static async login(username: string, password: string) {
@@ -14,5 +14,9 @@ export class UserService {
     if (!isPasswordCorrect) throw new Error('wrong password')
 
     return user
+  }
+
+  public async getById(): Promise<IUserDocument> {
+    return UserModel.findOne()
   }
 }

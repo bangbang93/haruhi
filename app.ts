@@ -28,8 +28,8 @@ app.use(session({
     prefix: 'haruhi:session:',
     ...Config.database.redis,
   }),
-  ...Config.session},
-))
+  ...Config.session,
+}))
 
 // uncomment after placing your favicon in /public
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -38,7 +38,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.use(mongoSanitize)
 app.use(haruhiMiddleware)
 
-// tslint:disable-next-line:no-var-requires
+/* eslint-disable-next-line @typescript-eslint/no-require-imports */// tslint:disable-next-line:no-var-requires
 app.use('/', require('./route/index'))
 
 expressSimpleRoute(path.join(__dirname, 'route'), app)
@@ -51,11 +51,10 @@ if (app.get('env') === 'development') {
   app.use(history())
 }
 
+/* eslint-disable @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports */
 // tslint:disable:no-var-requires
 if (app.get('env') === 'development') {
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
   const webpack       = require('webpack')
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
   const webpackConfig = require('./client/webpack.conf')
   const compiler      = webpack(webpackConfig)
   const devMiddleware = require('webpack-dev-middleware')(compiler, {
@@ -69,6 +68,7 @@ if (app.get('env') === 'development') {
   app.use(devMiddleware)
   app.use(hotMiddleware)
 }
+/* eslint-enable @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports */
 // tslint:enable:no-var-requires
 
 app.use(express.static(path.join(__dirname, 'public')))
@@ -103,7 +103,7 @@ if (app.get('env') !== 'production') {
       err.status = 500
     }
     if (res.headersSent) return
-    res.status(err.status || 500)
+    res.status(err.status)
       .json({
         message: err.message,
       })

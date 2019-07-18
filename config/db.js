@@ -5,8 +5,8 @@
 const CONFIG = {
   dev: {
     mysql: {
-      host: 'localhost',
-      user: 'root',
+      host    : 'localhost',
+      user    : 'root',
       password: '',
       database: 'cp',
     },

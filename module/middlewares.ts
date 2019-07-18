@@ -33,10 +33,10 @@ declare global {
 }
 
 export function haruhiMiddleware(req: Request, res: Response, next: NextFunction): void {
-  res.missing = function missing(field: string | string[]): Response {
+  res.missing = (field: string | string[]): Response => {
     return res.status(400)
       .json({
-        message: 'missing ' + field.toString(),
+        message: `missing ${field.toString()}`,
       })
   }
   req.logger = Logger.child({req})

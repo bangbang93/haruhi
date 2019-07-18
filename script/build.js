@@ -3,7 +3,7 @@
  */
 'use strict'
 // tslint:disable:no-console
-/* eslint-disable @typescript-eslint/no-var-requires */
+/* eslint-disable @typescript-eslint/no-var-requires,@typescript-eslint/no-require-imports,no-console */
 
 process.env.NODE_ENV = 'production'
 
@@ -15,8 +15,7 @@ console.log(`
   Tip:
   Built files are meant to be served over an HTTP server.
   Opening index.html over file:// won't work.
-`,
-)
+`)
 
 const spinner = ora('building for production...')
 spinner.start()

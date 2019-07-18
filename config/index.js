@@ -2,10 +2,11 @@
  * Created by bangbang93 on 2017/3/20.
  */
 'use strict'
+/* eslint-disable @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports */
 const configure = {
   database: require('./default/database'),
-  session: require('./default/session'),
-  logger: require('./default/logger'),
+  session : require('./default/session'),
+  logger  : require('./default/logger'),
 }
 
 const index = Object.keys(configure)

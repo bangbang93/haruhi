@@ -16,11 +16,11 @@
     }
 </style>
 <script>
-export default{
-  data(){
-    return{
-      msg:'hello vue'
+export default {
+  data() {
+    return {
+      msg: 'hello vue',
     }
-  }
+  },
 }
 </script>
