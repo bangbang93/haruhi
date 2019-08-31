@@ -17,25 +17,26 @@ export interface IServicedRequest<T> extends Request {
 }
 
 declare global {
+  // eslint-disable-next-line @typescript-eslint/no-namespace
   namespace Express {
-    // tslint:disable-next-line
+    /* eslint-disable-next-line */
     interface Request {
       logger: bunyan
       getPage(): number
       getLimit(): number
     }
-    // tslint:disable-next-line
+    /* eslint-disable-next-line */
     interface Response {
       missing(fields: string | string[]): this
     }
   }
 }
 
-export function haruhiMiddleware(req: Request, res: Response, next: NextFunction) {
-  res.missing = function missing(field: string | string[]) {
+export function haruhiMiddleware(req: Request, res: Response, next: NextFunction): void {
+  res.missing = (field: string | string[]): Response => {
     return res.status(400)
       .json({
-        message: 'missing ' + field.toString(),
+        message: `missing ${field.toString()}`,
       })
   }
   req.logger = Logger.child({req})
@@ -44,11 +45,12 @@ export function haruhiMiddleware(req: Request, res: Response, next: NextFunction
   next()
 }
 
-export function checkValidationResult(req: Request, res: Response, next: NextFunction) {
+export function checkValidationResult(req: Request, res: Response, next: NextFunction): void {
   const validation = validationResult(req)
   if (!validation.isEmpty()) {
-    return res.status(400)
+    res.status(400)
       .json(validation.mapped())
+    return
   }
   next()
 }

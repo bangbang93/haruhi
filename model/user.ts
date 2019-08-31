@@ -20,16 +20,19 @@ export interface IUserModel extends Model<IUserDocument> {
 
 const schema = new mongoose.Schema({
   username: {
-    type: String,
+    type  : String,
     unique: true,
   },
   password: {
-    type: String,
+    type  : String,
     select: false,
   },
 })
 
-schema.statics.getByUsername = function (this: IUserModel, username: string) {
+schema.statics.getByUsername = async function getByUsername(
+  this: IUserModel,
+  username: string,
+): Promise<IUserDocument> {
   return this.findOne({
     username,
   })

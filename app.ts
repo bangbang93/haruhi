@@ -24,12 +24,12 @@ const RedisStore = connectRedis(session)
 
 app.use(cookieParser())
 app.use(session({
-    store: new RedisStore({
-      prefix: 'haruhi:session:',
-      ...Config.database.redis,
-    }),
-    ...Config.session},
-))
+  store: new RedisStore({
+    prefix: 'haruhi:session:',
+    ...Config.database.redis,
+  }),
+  ...Config.session,
+}))
 
 // uncomment after placing your favicon in /public
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
@@ -38,7 +38,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.use(mongoSanitize)
 app.use(haruhiMiddleware)
 
-// tslint:disable-next-line:no-var-requires
+/* eslint-disable-next-line @typescript-eslint/no-require-imports */
 app.use('/', require('./route/index'))
 
 expressSimpleRoute(path.join(__dirname, 'route'), app)
@@ -51,7 +51,7 @@ if (app.get('env') === 'development') {
   app.use(history())
 }
 
-// tslint:disable:no-var-requires
+/* eslint-disable @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports */
 if (app.get('env') === 'development') {
   const webpack       = require('webpack')
   const webpackConfig = require('./client/webpack.conf')
@@ -67,12 +67,13 @@ if (app.get('env') === 'development') {
   app.use(devMiddleware)
   app.use(hotMiddleware)
 }
-// tslint:enable:no-var-requires
+/* eslint-enable @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports */
 
 app.use(express.static(path.join(__dirname, 'public')))
 
 // catch 404 and forward to error handler
-app.use((req, res, next) => {
+/* eslint-disable @typescript-eslint/no-unused-vars */
+app.use((req, res, next): void => {
   res.status(404)
     .json({
       message: 'not found',
@@ -81,7 +82,7 @@ app.use((req, res, next) => {
 
 // error handler
 if (app.get('env') !== 'production') {
-  app.use((err, req, res, next) => {
+  app.use((err, req, res, next): void => {
     if (!err.status) {
       req.logger.fatal({err})
       err.status = 500
@@ -94,13 +95,13 @@ if (app.get('env') !== 'production') {
       })
   })
 } else {
-  app.use((err, req, res, next) => {
+  app.use((err, req, res, next): void => {
     if (!err.status) {
       req.logger.fatal({err})
       err.status = 500
     }
     if (res.headersSent) return
-    res.status(err.status || 500)
+    res.status(err.status)
       .json({
         message: err.message,
       })
