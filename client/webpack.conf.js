@@ -28,11 +28,7 @@ if (IS_PRODUCTION) {
     new webpack.LoaderOptionsPlugin({
       minimize: true,
     }),
-    new CleanPlugin(config.output.path, {
-      exclude: ['.gitkeep'],
-      root   : require('path')
-        .resolve('..'),
-    }),
+    new CleanPlugin(),
     new MiniCssExtractPlugin({
       chunkFilename: '[id].css',
       filename     : '[name].[hash].css',
