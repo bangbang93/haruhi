@@ -7,7 +7,7 @@ const config               = require('./webpack')
 const webpack              = require('webpack')
 const merge                = require('webpack-merge')
 const HtmlWebpackPlugin    = require('html-webpack-plugin')
-const CleanPlugin          = require('clean-webpack-plugin')
+const {CleanWebpackPlugin} = require('clean-webpack-plugin')
 const {VueLoaderPlugin}    = require('vue-loader')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
@@ -28,7 +28,7 @@ if (IS_PRODUCTION) {
     new webpack.LoaderOptionsPlugin({
       minimize: true,
     }),
-    new CleanPlugin(),
+    new CleanWebpackPlugin(),
     new MiniCssExtractPlugin({
       chunkFilename: '[id].css',
       filename     : '[name].[hash].css',
