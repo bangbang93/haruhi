@@ -38,7 +38,7 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.use(mongoSanitize)
 app.use(haruhiMiddleware)
 
-/* eslint-disable-next-line @typescript-eslint/no-require-imports */
+/* eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports */
 app.use('/', require('./route/index'))
 
 expressSimpleRoute(path.join(__dirname, 'route'), app)
