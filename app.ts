@@ -10,6 +10,7 @@ import * as expressSimpleRoute from 'express-simple-route'
 import * as logger from 'morgan'
 import * as path from 'path'
 import * as Config from './config'
+import {redis} from './model'
 import {haruhiMiddleware} from './module/middlewares'
 
 const app = express()
@@ -25,8 +26,8 @@ const RedisStore = connectRedis(session)
 app.use(cookieParser())
 app.use(session({
   store: new RedisStore({
+    client: redis as any,
     prefix: 'haruhi:session:',
-    ...Config.database.redis,
   }),
   ...Config.session,
 }))

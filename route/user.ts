@@ -17,7 +17,7 @@ router.get('/', async (req, res): Promise<void> => {
 
 router.get('/errors', async (req: Request, res: Response): Promise<void> => {
   const err = new Error('some error')
-  err.foo = 'bar'
+  err['foo'] = 'bar'
   throw err
 })
 

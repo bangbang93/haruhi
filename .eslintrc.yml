@@ -34,7 +34,6 @@ rules:
   curly: [error, multi-line]
   default-case: error
   dot-location: [error, property]
-  dot-notation: error
   eol-last: [error, always]
   eqeqeq: error
   func-name-matching: [error, always]
