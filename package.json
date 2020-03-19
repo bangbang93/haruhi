@@ -20,7 +20,7 @@
   "dependencies": {
     "apidoc": "^0.18.0",
     "bcrypt": "^3.0.7",
-    "bluebird": "^3.5.1",
+    "bluebird": "^3.7.2",
     "body-parser": "^1.18.3",
     "bunyan": "^1.8.12",
     "bunyan-pretty-stream": "^1.0.1",
