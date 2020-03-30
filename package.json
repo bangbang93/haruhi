@@ -31,7 +31,7 @@
     "express": "^4.17.1",
     "express-mongo-sanitize": "^1.3.2",
     "express-promise-router": "^3.0.3",
-    "express-session": "^1.15.6",
+    "express-session": "^1.17.0",
     "express-simple-route": "^1.6.3",
     "http-errors": "^1.7.1",
     "ioredis": "^4.16.0",
