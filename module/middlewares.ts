@@ -1,7 +1,6 @@
 import * as bunyan from 'bunyan'
 import errSerializer from 'bunyan-serializer-error'
 import {NextFunction, Request, Response} from 'express'
-import {validationResult} from 'express-validator/check'
 import {logger as loggerConfig} from '../config'
 
 const Logger = bunyan.createLogger({
@@ -42,15 +41,5 @@ export function haruhiMiddleware(req: Request, res: Response, next: NextFunction
   req.logger = Logger.child({req})
   req.getPage = () => Math.max(req.query.page, 1) || 1
   req.getLimit = () => Math.min(req.query.limit, 500) || 10
-  next()
-}
-
-export function checkValidationResult(req: Request, res: Response, next: NextFunction): void {
-  const validation = validationResult(req)
-  if (!validation.isEmpty()) {
-    res.status(400)
-      .json(validation.mapped())
-    return
-  }
   next()
 }
