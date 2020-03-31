@@ -35,7 +35,7 @@
     "express-simple-route": "^1.6.3",
     "http-errors": "^1.7.1",
     "ioredis": "^4.16.0",
-    "loud-rejection": "^2.0.0",
+    "loud-rejection": "^2.2.0",
     "moment": "^2.24.0",
     "mongoose": "^5.9.5",
     "morgan": "^1.9.1",
