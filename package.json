@@ -19,7 +19,7 @@
   ],
   "dependencies": {
     "apidoc": "^0.18.0",
-    "bcrypt": "^3.0.7",
+    "bcrypt": "^3.0.8",
     "bluebird": "^3.7.2",
     "body-parser": "^1.18.3",
     "bunyan": "^1.8.12",
