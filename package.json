@@ -18,7 +18,7 @@
     "lint"
   ],
   "dependencies": {
-    "apidoc": "^0.18.0",
+    "apidoc": "^0.20.1",
     "bcrypt": "^3.0.8",
     "bluebird": "^3.7.2",
     "body-parser": "^1.18.3",
