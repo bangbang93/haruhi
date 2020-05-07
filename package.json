@@ -12,7 +12,9 @@
     "build": "NODE_ENV=production node script/build",
     "update": "npm run build && npm run pm2",
     "test": "npm run build",
-    "lint": "eslint --ext .js,.ts,.vue ."
+    "lint": "eslint --ext .js,.ts,.vue .",
+    "snyk-protect": "snyk protect",
+    "prepare": "npm run snyk-protect"
   },
   "pre-commit": [
     "lint"
@@ -42,7 +44,8 @@
     "sass-loader": "^8.0.2",
     "sequelize": "^5.21.5",
     "serve-favicon": "^2.5.0",
-    "ts-node": "^8.8.1"
+    "ts-node": "^8.8.1",
+    "snyk": "^1.319.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
@@ -94,5 +97,6 @@
     "webpack-dev-middleware": "^3.1.3",
     "webpack-hot-middleware": "^2.22.2",
     "webpack-merge": "^4.1.2"
-  }
+  },
+  "snyk": true
 }
