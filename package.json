@@ -15,9 +15,6 @@
     "lint": "eslint --ext .js,.ts,.vue .",
     "snyk-protect": "snyk protect"
   },
-  "pre-commit": [
-    "lint"
-  ],
   "dependencies": {
     "apidoc": "^0.20.1",
     "bcrypt": "^3.0.8",
@@ -77,10 +74,11 @@
     "eventsource-polyfill": "^0.9.6",
     "file-loader": "^4.0.0",
     "html-webpack-plugin": "^3.2.0",
+    "husky": "^4.2.5",
+    "lint-staged": "^10.2.6",
     "mini-css-extract-plugin": "^0.7.0",
     "node-sass": "^4.13.1",
     "ora": "^4.0.3",
-    "pre-commit": "^1.2.2",
     "style-loader": "^1.0.0",
     "ts-loader": "^4.3.0",
     "typescript": "^3.5.3",
@@ -97,5 +95,13 @@
     "webpack-hot-middleware": "^2.22.2",
     "webpack-merge": "^4.1.2"
   },
-  "snyk": true
+  "snyk": true,
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,ts,vue}": "eslint --cache --fix"
+  }
 }
