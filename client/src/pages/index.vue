@@ -23,6 +23,6 @@ import {Prop} from 'vue-property-decorator'
 
 @Component
 export default class Index extends Vue {
-  @Prop() msg = 'hello vue'
+  @Prop({default: 'hello vue'}) msg: string
 }
 </script>

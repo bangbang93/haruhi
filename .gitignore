@@ -89,3 +89,4 @@ client/dist
 config/*.development.*
 .idea/
 apidoc/
+.eslintcache
