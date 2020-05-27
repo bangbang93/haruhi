@@ -36,7 +36,7 @@ app.use(session({
 // app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: false}))
-app.use(mongoSanitize)
+app.use(mongoSanitize())
 app.use(haruhiMiddleware)
 
 /* eslint-disable-next-line @typescript-eslint/no-var-requires, @typescript-eslint/no-require-imports */

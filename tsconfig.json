@@ -5,7 +5,9 @@
     "sourceMap": true,
     "lib": ["es5", "es6", "es7"],
     "allowJs": true,
-    "outDir": "dist"
+    "outDir": "dist",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true
   },
   "exclude": [
     "node_modules",

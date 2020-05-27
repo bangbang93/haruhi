@@ -55,7 +55,6 @@ rules:
   linebreak-style: [error, unix]
   lines-between-class-members: error
   max-len: [error, 120]
-  new-cap: warn
   new-parens: error
   newline-per-chained-call: [error, {ignoreChainWithDepth: 3}]
   no-array-constructor: error
