@@ -41,7 +41,7 @@
     "sequelize": "^5.21.5",
     "serve-favicon": "^2.5.0",
     "ts-node": "^8.8.1",
-    "snyk": "^1.321.0"
+    "snyk": "^1.328.0"
   },
   "devDependencies": {
     "@babel/core": "^7.4.4",
