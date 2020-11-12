@@ -35,7 +35,7 @@
     "ioredis": "^4.16.1",
     "loud-rejection": "^2.2.0",
     "moment": "^2.25.3",
-    "mongoose": "^5.9.10",
+    "mongoose": "^5.10.13",
     "morgan": "^1.9.1",
     "sass-loader": "^8.0.2",
     "sequelize": "^6.3.5",
