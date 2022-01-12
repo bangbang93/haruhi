@@ -16,7 +16,7 @@
     "snyk-protect": "snyk protect"
   },
   "dependencies": {
-    "apidoc": "^0.20.1",
+    "apidoc": "^0.50.0",
     "bcrypt": "^5.0.0",
     "bluebird": "^3.7.2",
     "body-parser": "^1.18.3",
