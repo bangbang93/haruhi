@@ -34,7 +34,7 @@
     "http-errors": "^1.7.3",
     "ioredis": "^4.27.8",
     "loud-rejection": "^2.2.0",
-    "moment": "^2.25.3",
+    "moment": "^2.29.2",
     "mongoose": "^5.11.7",
     "morgan": "^1.9.1",
     "sass-loader": "^8.0.2",
